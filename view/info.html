@@ -1,0 +1,77 @@
+<!--
+ Copyright 2023 chenbitao
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气预报</title>
+  <style>
+    .weather_bg {
+      background-color: #0d68bc;
+      height: 150px;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1em;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .weather_bg label {
+      line-height: 1.5em;
+      text-align: center;
+      text-shadow: 1px 1px 1px #555;
+      background: #afdb00;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .weather_bg .temp {
+      font-size: 32px;
+      margin-top: 5px;
+      /* padding-left: 14px; */
+    }
+
+    .weather_bg sup {
+      font-size: 0.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="weather_bg">
+    <div>
+      <p>
+        {{ city }} {{weather}}
+      </p>
+      <p class="temp">
+        温度
+        <label for="">
+          {{temp1}}~{{temp2}}
+        </label>
+      </p>
+      <p>
+        更新时间
+        <label for="">{{ptime}}</label>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

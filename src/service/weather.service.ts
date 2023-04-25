@@ -12,20 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { IResponse, Provide, makeHttpRequest } from '@midwayjs/core';
+import { Provide, makeHttpRequest } from '@midwayjs/core';
 import { IWeatherInfo } from '../interface';
 
 @Provide()
 export class WeatherService {
   async getWeather(cityId: string): Promise<IWeatherInfo> {
-    const result = await makeHttpRequest<IResponse<IWeatherInfo>>(
+    const result = await makeHttpRequest<IWeatherInfo>(
       `http://www.weather.com.cn/data/cityinfo/${cityId}.html`,
       {
         dataType: 'json',
       }
     );
     if (result.status === 200) {
-      return result.data as unknown as IWeatherInfo;
+      return result.data as IWeatherInfo;
     }
   }
 }
