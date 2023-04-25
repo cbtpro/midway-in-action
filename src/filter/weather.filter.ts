@@ -12,28 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Provide, makeHttpRequest } from '@midwayjs/core';
-import { IWeatherInfo } from '../interface';
+import { Catch } from '@midwayjs/core';
+import { Context } from '@midwayjs/koa';
 import { WeatherEmptyDataError } from '../error/weather.error';
 
-@Provide()
-export class WeatherService {
-  async getWeather(cityId: string): Promise<IWeatherInfo> {
-    if (!cityId) {
-      throw new WeatherEmptyDataError();
-    }
-    try {
-      const result = await makeHttpRequest<IWeatherInfo>(
-        `http://www.weather.com.cn/data/cityinfo/${cityId}.html`,
-        {
-          dataType: 'json',
-        }
-      );
-      if (result.status === 200) {
-        return result.data as IWeatherInfo;
-      }
-    } catch (error) {
-      throw new WeatherEmptyDataError(error);
-    }
+@Catch(WeatherEmptyDataError)
+export class WeatherErrorFilter {
+  async catch(error: WeatherEmptyDataError, ctx: Context) {
+    ctx.logger.error(error);
+    return '<html><body><h1>weather data is empty</h1></body></html>';
   }
 }
