@@ -3,6 +3,7 @@ import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
 import * as view from '@midwayjs/view-nunjucks';
+import * as orm from '@midwayjs/typeorm';
 import { join } from 'path';
 // import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
@@ -17,6 +18,7 @@ import { WeatherErrorFilter } from './filter/weather.filter';
       component: info,
       enabledEnvironment: ['local'],
     },
+    orm,
     view,
   ],
   importConfigs: [join(__dirname, './config')],

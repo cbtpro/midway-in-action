@@ -9,4 +9,20 @@ export default {
   view: {
     defaultViewEngine: 'nunjucks',
   },
+  typeorm: {
+    dataSource: {
+      default: {
+        type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'dev',
+        password: '123456',
+        database: 'midway-in-action',
+        synchronize: false,
+        logging: false,
+        // 配置实体模型
+        entities: ['**/entity/*.entity{.ts,.js}'],
+      },
+    },
+  },
 } as MidwayConfig;
