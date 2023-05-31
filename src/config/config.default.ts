@@ -15,7 +15,7 @@ export default {
         type: 'mysql',
         host: 'host.docker.internal',
         port: 3306,
-        username: 'root',
+        username: 'dev',
         password: '123456',
         database: 'midway-in-action',
         synchronize: false,
