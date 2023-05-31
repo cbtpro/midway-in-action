@@ -3,9 +3,9 @@
     {
       "name": "midway-in-action",
       "exec_interpreter": "babel-node",
-      "script": "bootstrap.js",
+      "script": "./bootstrap.js",
       "merge_logs": true,
-      "cwd": "./",
+      "cwd": "./dist",
       "env": {
         "NODE_ENV": "production"
       }
