@@ -13,7 +13,7 @@ export default {
     dataSource: {
       default: {
         type: 'mysql',
-        host: '172.18.0.1',
+        host: 'host.docker.internal',
         port: 3306,
         username: 'root',
         password: '123456',
