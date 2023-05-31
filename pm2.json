@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "midway-in-action",
+      "exec_interpreter": "babel-node",
+      "script": "bootstrap.js",
+      "merge_logs": true,
+      "cwd": "./",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
