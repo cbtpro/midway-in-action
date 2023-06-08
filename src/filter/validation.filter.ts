@@ -1,4 +1,4 @@
-// Copyright 2023 chenbitao
+// Copyright 2023 Peter Chen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { MidwayError } from '@midwayjs/core';
+import { Catch } from '@midwayjs/core';
+import { Context } from '@midwayjs/koa';
+import { ValidationError } from '../error/validation.error';
 
-export class WeatherEmptyDataError extends MidwayError {
-  constructor(error?: Error) {
-    super('weather data is empty', {
-      cause: error,
-    });
-    if (error?.stack) {
-      this.stack = error.stack;
-    }
+@Catch(ValidationError)
+export class ValidationErrorFilter {
+  async catch(error: ValidationError, ctx: Context) {
+    ctx.logger.error(error);
+    const { message } = error;
+    ctx.status = 400;
+    return {
+      success: false,
+      message: message,
+    };
   }
 }

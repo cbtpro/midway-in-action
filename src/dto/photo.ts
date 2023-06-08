@@ -1,4 +1,4 @@
-// Copyright 2023 chenbitao
+// Copyright 2023 Peter Chen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,43 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Rule, RuleType } from '@midwayjs/validate';
 
-@Entity('table_photo')
-export class Photo {
-  @PrimaryGeneratedColumn()
+export class photoDTO {
+  @Rule(RuleType.number().max(100))
   id: number;
-  @Column({
-    length: 100,
-  })
+
+  @Rule(RuleType.string().max(200).required())
   name: string;
-  @Column({
-    length: 2000,
-  })
+
+  @Rule(RuleType.string().max(2000).required())
   description: string;
-  @Column({
-    length: 200,
-  })
+
+  @Rule(RuleType.string().max(200).required())
   filename: string;
-  @Column({
-    type: 'double',
-    default: 0,
-  })
+
+  @Rule(RuleType.number().min(0))
   views: number;
-  @Column()
+
+  @Rule(RuleType.boolean().default(false))
   isPublished: boolean;
-  @CreateDateColumn({
-    type: 'timestamp',
-  })
+
+  @Rule(RuleType.date())
   createDate: Date;
-  @UpdateDateColumn({
-    type: 'timestamp',
-  })
+
+  @Rule(RuleType.date())
   updateDate: Date;
 }

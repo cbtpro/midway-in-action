@@ -1,4 +1,4 @@
-// Copyright 2023 chenbitao
+// Copyright 2023 Peter Chen
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,9 +14,14 @@
 
 import { MidwayError } from '@midwayjs/core';
 
-export class WeatherEmptyDataError extends MidwayError {
+export class ValidationError extends MidwayError {
   constructor(error?: Error) {
-    super('weather data is empty', {
+    let msg = '参数校验错误';
+    if (error) {
+      const { message } = error;
+      msg = message;
+    }
+    super(msg, {
       cause: error,
     });
     if (error?.stack) {

@@ -32,8 +32,16 @@ describe('test/controller/weather.test.ts', () => {
     expect(result.text).toMatch(/北京/);
   });
 
-  it('测试请求天气失败的情况', async () => {
+  it('测试请求天气参数为空失败的情况', async () => {
     const result = await createHttpRequest(app).get('/weather');
+    expect(result.status).toBe(200);
+    expect(result.text).toMatch(/weather data is empty/);
+  });
+
+  it('测试请求天气失败的情况', async () => {
+    const result = await createHttpRequest(app).get('/weather').query({
+      cityId: 'xxx',
+    });
     expect(result.status).toBe(200);
     expect(result.text).toMatch(/weather data is empty/);
   });

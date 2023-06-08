@@ -20,6 +20,7 @@ import { WeatherEmptyDataError } from '../error/weather.error';
 export class WeatherErrorFilter {
   async catch(error: WeatherEmptyDataError, ctx: Context) {
     ctx.logger.error(error);
+    ctx.status = 404;
     return '<html><body><h1>weather data is empty</h1></body></html>';
   }
 }
